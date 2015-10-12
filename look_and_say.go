@@ -23,7 +23,7 @@ import (
 
 func look_and_say(seed, iterations int) string {
 	input := strconv.Itoa(seed)
-	if iterations <= 1 {
+	if iterations < 1 {
 		return input
 	}
 	ret := ""
@@ -55,6 +55,10 @@ func look_and_say(seed, iterations int) string {
 
 func main() {
 	var sequence string
+	fmt.Printf("Seed: %d\n", 2)
+	fmt.Printf("Iterations: %d\n", 1)
+	sequence = look_and_say(2, 1)
+	fmt.Printf("Sequence: %s\n", sequence)
 	fmt.Printf("Seed: %d\n", 1)
 	fmt.Printf("Iterations: %d\n", 4)
 	sequence = look_and_say(1, 4)
