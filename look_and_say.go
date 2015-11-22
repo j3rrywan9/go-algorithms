@@ -22,10 +22,11 @@ import (
 )
 
 func look_and_say(seed, iterations int) string {
-	input := strconv.Itoa(seed)
 	if iterations < 1 {
 		return input
 	}
+	// Convert integer to string
+	input := strconv.Itoa(seed)
 	ret := ""
 	prev, current := string(input[0]), string(input[0])
 	for i := 0; i < iterations; i++ {
