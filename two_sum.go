@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// Determine if an integer is in a slice of integers
 func integerInSlice(i int, s []int) bool {
 	for _, x := range s {
 		if x == i {
@@ -13,6 +14,7 @@ func integerInSlice(i int, s []int) bool {
 	return false
 }
 
+// Construct a slice of integers that come from keys of a map[int]int
 func sliceOfKeys(m map[int]int) []int {
 	keys := make([]int, len(m))
 	for k, _ := range m {
@@ -21,26 +23,26 @@ func sliceOfKeys(m map[int]int) []int {
 	return keys
 }
 
-// LCOJ No. 1
-func twoSum(numbers []int, target int) (int, int) {
+// LeetCode OJ No. 1
+func twoSum(nums []int, target int) (int, int) {
 	d := make(map[int]int)
-	for i := 0; i < len(numbers); i++ {
-		ks := sliceOfKeys(d)
-		if integerInSlice(numbers[i], ks) == false {
-			d[target - numbers[i]] = i + 1
+	for i := 0; i < len(nums); i++ {
+		keys := sliceOfKeys(d)
+		if integerInSlice(nums[i], keys) == false {
+			d[target - nums[i]] = i
 		} else {
-			return d[numbers[i]], i + 1
+			return d[nums[i]], i
 		}
 	}
 	return -1, -1
 }
 
 func main() {
-	input := []int{2, 7, 11, 15}
+	nums := []int{2, 7, 11, 15}
 	target := 9
-	fmt.Printf("Input: %v\n", input)
+	fmt.Printf("Numbers: %v\n", nums)
 	fmt.Printf("Target: %d\n", target)
-	index1, index2 := twoSum(input, target)
+	index1, index2 := twoSum(nums, target)
 	fmt.Printf("Index1=%d, index2=%d\n", index1, index2)
 }
 
