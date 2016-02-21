@@ -1,4 +1,4 @@
-# Algorithms implemented in Go.
+# Algorithms implemented in Go
 
 ## Data Structures
 1. Stack
@@ -16,5 +16,11 @@
 ## Search
 1. Binary search
 
-## Misc
+## LeetCode OJ Algorithms
+1. Two Sum
+66. Plus One
+206. Reverse Linked List
+237. Delete Node in a Linked List
 
+## Interview Questions
+1. Look and Say
