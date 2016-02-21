@@ -17,7 +17,7 @@ func main() {
 	myList.Print()
 
 	fmt.Println("Deleting 3rd node from above linked list...")
-	var myNode *linkedlist.Node = myList
+	myNode := myList
 	for i := 0; i < 2; i++ {
 		myNode = myNode.Next
 	}
