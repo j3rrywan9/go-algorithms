@@ -20,10 +20,10 @@ func reverseLinkedList(head *linkedlist.Node) *linkedlist.Node {
 func main() {
 	myList := &linkedlist.Node{1, nil}
 	fmt.Println("Creating a 10-node linked list...")
-	myList.CreateLinkedList(10)
-	myList.PrintLinkedList()
+	myList.Create(10)
+	myList.Print()
 
 	fmt.Println("Reversing above linked list...")
-	reversedList := reverseLinkedList(myNode)
-	reversedList.PrintLinkedList()
+	reversedList := reverseLinkedList(myList)
+	reversedList.Print()
 }
