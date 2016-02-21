@@ -8,7 +8,7 @@ import (
 // LeetCode OJ No. 206
 func reverseLinkedList(head *linkedlist.Node) *linkedlist.Node {
 	var dummy *linkedlist.Node
-    for head != nil {
+	for head != nil {
 		current := head
 		head = head.Next
 		current.Next = dummy
