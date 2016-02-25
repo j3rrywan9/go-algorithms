@@ -2,93 +2,76 @@ package main
 
 import (
 	"fmt"
+	"github.com/j3rrywan9/go-algorithms/linkedlist"
 )
 
-type ListNode struct {
-	val int
-	next *ListNode
-}
-
-func createList(start, end int) *ListNode {
-	head := &ListNode{start, nil}
-	current := head
-	for i := start + 1; i <= end; i++ {
-		pListNode := &ListNode{i, nil}
-		current.next = pListNode
-		current = pListNode
-	}
-	return head
-}
-
-func printList(pListNode *ListNode) {
-	current := pListNode
-	for {
-		fmt.Printf("%d", current.val)
-		if current.next != nil {
-			fmt.Print("->")
-			current = current.next
-		} else {
-			break
-		}
-	}
-	fmt.Println()
-}
-
-func splitList(head *ListNode) (*ListNode, *ListNode) {
+// Split a linked list in two halves
+func splitList(head *linkedlist.Node) (*linkedlist.Node, *linkedlist.Node) {
 	runner, walker := head, head
-	for runner != nil && runner.next != nil {
-		walker = walker.next
-		runner = runner.next.next
+
+	for runner != nil && runner.Next != nil {
+		walker = walker.Next
+		runner = runner.Next.Next
 	}
-	middle := walker.next
-	walker.next = nil
+
+	middle := walker.Next
+	walker.Next = nil
+
 	return head, middle
 }
 
-func reverseList(pListNode *ListNode) *ListNode {
-	current := pListNode
-	var head *ListNode = nil
-	for {
-		if current == nil {
-			break
-		}
-		temp := current.next
-		current.next = head
-		head = current
-		current = temp
+func reverseList(head *linkedlist.Node) *linkedlist.Node {
+	var dummy *linkedlist.Node
+
+	for head != nil {
+		current := head
+		head = head.Next
+		current.Next = dummy
+		dummy = current
 	}
-	return head
+
+	return dummy
 }
 
-func mergeList(a, b *ListNode) *ListNode {
+// Merge two linked lists
+func mergeLists(a, b *linkedlist.Node) *linkedlist.Node {
 	head, tail := a, a
-	a = a.next
+
+	a = a.Next
+
 	for b != nil {
-		tail.next = b
-		tail = tail.next
-		b = b.next
+		tail.Next = b
+		tail = tail.Next
+		b = b.Next
 		if a != nil {
 			a, b = b, a
 		}
 	}
+
 	return head
 }
 
-// LCOJ No. 143
-func reorderList(pListNode *ListNode) *ListNode {
-	if pListNode == nil || pListNode.next == nil {
-		return pListNode
+// LeetCode OJ No. 143
+func reorderList(head *linkedlist.Node) *linkedlist.Node {
+	if head == nil || head.Next == nil {
+		return head
 	}
-	a, b := splitList(pListNode)
+
+	a, b := splitList(head)
 	b = reverseList(b)
-	head := mergeList(a, b)
+	head = mergeLists(a, b)
+
 	return head
 }
 
 func main() {
-	var l = createList(1, 4)
-	printList(l)
-	head := reorderList(l)
-	printList(head)
+	myList := &linkedlist.Node{1, nil}
+	fmt.Println("Creating a 10-node linked list...")
+	myList.Create(10)
+	myList.Print()
+
+	fmt.Println("Reordering above linked list...")
+	head := reorderList(myList)
+	head.Print()
 }
 
