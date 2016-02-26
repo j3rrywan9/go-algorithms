@@ -10,18 +10,10 @@ import (
 
 const words_path = "/usr/share/dict/words"
 
-func isAnagram(s1, s2 string) bool {
-	if len(s1) != len(s2) {
-		return false;
-	}
-
-	ss1 := strings.Split(s1, "")
-	sort.Strings(ss1)
-
-	ss2 := strings.Split(s2, "")
-	sort.Strings(ss2)
-
-	return strings.Join(ss1, "") == strings.Join(ss2, "")
+func sortString(word string) string {
+	letters := strings.Split(word, "")
+	sort.Strings(letters)
+	return strings.Join(letters, "")
 }
 
 func buildAnagramMap() map[string][]string {
@@ -35,10 +27,7 @@ func buildAnagramMap() map[string][]string {
 
 	for scanner.Scan() {
 		word := scanner.Text()
-
-		chars_in_word := strings.Split(word, "")
-		sort.Strings(chars_in_word)
-		sorted_word := strings.Join(chars_in_word, "")
+		sorted_word := sortString(word)
 
 		if _, ok := anagramMap[sorted_word]; ok == false {
 			anagramMap[sorted_word] = []string{}
@@ -49,22 +38,20 @@ func buildAnagramMap() map[string][]string {
 	return anagramMap
 }
 
-func getAnagrams(word string, anagramMap map[string][]string) []string {
-	chars_in_word := strings.Split(word, "")
-	sort.Strings(chars_in_word)
-	sorted_word := strings.Join(chars_in_word, "")
-
-	if anagramList, ok := anagramMap[sorted_word]; ok {
-		return anagramList
-	} else {
-		return []string{}
-	}
-}
-
 func main() {
-	var word string = "care"
+	var word string
 
 	anagramMap := buildAnagramMap()
-	anagramList := getAnagrams(word, anagramMap)
-	fmt.Printf("Word: %s\nAnagrams: %v\n", word, anagramList)
+
+	scanner := bufio.NewScanner(os.Stdin)
+
+	for scanner.Scan() {
+		word = strings.TrimSpace(scanner.Text())
+
+		if anagramList, ok := anagramMap[sortString(word)]; ok {
+			fmt.Printf("%v\n", anagramList)
+		} else {
+			fmt.Println("No matches")
+		}
+	}
 }
