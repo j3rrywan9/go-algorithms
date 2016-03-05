@@ -4,58 +4,59 @@ import (
 	"fmt"
 )
 
-func mergeSort(a []int) []int {
-	if len(a) <= 1 {
-		return a
+func mergeSort(array []int) []int {
+	if len(array) <= 1 {
+		return array
 	}
 
-	left := make([]int, 0)
-	right := make([]int, 0)
+	left, right := []int{}, []int{}
 
-	m := len(a) / 2
+	mid := len(array) / 2
 
-	for i, x := range a {
+	for i, x := range array {
 		switch {
-		case i < m:
+		case i < mid:
 			left = append(left, x)
-		case i >= m:
+		case i >= mid:
 			right = append(right, x)
 		}
 	}
 
-	left = mergeSort(left)
-	right = mergeSort(right)
+	left, right = mergeSort(left), mergeSort(right)
 
 	return merge(left, right)	
 }
 
-// Merge two sorted arrays into one
+// Merge two sorted arrays into one sorted array
 func merge(left, right []int) []int {
-	res := make([]int, (len(left) + len(right)))
+	array := make([]int, len(left) + len(right))
 
 	i, j, k := 0, 0, 0
 	
 	for i < len(left) && j < len(right) {
 		if left[i] <= right[j] {
-			res[k] = left[i]
+			array[k] = left[i]
 			i += 1
 		} else {
-			res[k] = right[j]
+			array[k] = right[j]
 			j += 1
 		}
 		k += 1
 	}
+
 	for i < len(left) {
-		res[k] = left[i]
+		array[k] = left[i]
 		i += 1
 		k += 1
 	}
+
 	for j < len(right) {
-		res[k] = right[j]
+		array[k] = right[j]
 		j += 1
 		k += 1
 	}
-	return res
+
+	return array
 }
 
 func main() {
