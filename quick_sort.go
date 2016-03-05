@@ -19,6 +19,8 @@ func partition(array []int, start, end int) int {
 			index_of_pivot += 1
 		}
 	}
+	
+	// Swap the element at index of pivot with pivot
 	temp := array[index_of_pivot]
 	array[index_of_pivot] = array[end]
 	array[end] = temp
