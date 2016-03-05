@@ -4,28 +4,38 @@ import (
 	"fmt"
 )
 
-func partition(a []int, start, end int) int {
-	var pIndex int = start
-	var pivot int = a[end]
+// Partition selects a pivot, rearranges the array such that all the elements
+// less than the pivot are towards the left of it and all the elements greater
+// than the pivot are towards the right of it, then returns the index of the
+// pivot after rearrangement
+func partition(array []int, start, end int) int {
+	index_of_pivot, pivot := start, array[end]
+
 	for i := start; i < end; i++ {
-		if a[i] <= pivot {
-			temp := a[i]
-			a[i] = a[pIndex]
-			a[pIndex] = temp
-			pIndex += 1
+		if array[i] <= pivot {
+			temp := array[i]
+			array[i] = array[index_of_pivot]
+			array[index_of_pivot] = temp
+			index_of_pivot += 1
 		}
 	}
-	temp := a[pIndex]
-	a[pIndex] = a[end]
-	a[end] = temp
-	return pIndex
+	temp := array[index_of_pivot]
+	array[index_of_pivot] = array[end]
+	array[end] = temp
+
+	return index_of_pivot
 }
 
-func quickSort(a []int, start, end int) {
+func quickSort(array []int, start, end int) {
 	if start < end {
-		pIndex := partition(a, start, end)
-		quickSort(a, start, pIndex - 1)
-		quickSort(a, pIndex + 1, end)
+		// Partition the unsorted array
+		index_of_pivot := partition(array, start, end)
+
+		// Quick sort the segment left to the pivot index
+		quickSort(array, start, index_of_pivot - 1)
+
+		// Quick sort the segment right to the pivot index
+		quickSort(array, index_of_pivot + 1, end)
 	}
 }
 
