@@ -5,7 +5,8 @@ import (
 )
 
 func binarySearch(a []int, x int) int {
-	var low, high int = 0, len(a) - 1
+	low, high := 0, len(a) - 1
+
 	for low <= high {
 		mid := (low + high) / 2
 		if x == a[mid] {
@@ -16,6 +17,7 @@ func binarySearch(a []int, x int) int {
 			low = mid + 1
 		}
 	}
+
 	return -1
 }
 
