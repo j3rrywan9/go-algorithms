@@ -4,17 +4,18 @@ import (
 	"fmt"
 )
 
-func binarySearch(a []int, x int) int {
-	low, high := 0, len(a) - 1
+func binarySearch(array []int, x int) int {
+	low, high := 0, len(array) - 1
 
 	for low <= high {
 		mid := (low + high) / 2
 
-		if x == a[mid] {
+		switch {
+		case x == array[mid]:
 			return mid
-		} else if x < a[mid] {
+		case x < array[mid]:
 			high = mid - 1
-		} else {
+		case x > array[mid]:
 			low = mid + 1
 		}
 	}
