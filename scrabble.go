@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-const words_path = "/usr/share/dict/words"
+const wordsPath = "/usr/share/dict/words"
 
 func sortString(word string) string {
 	letters := strings.Split(word, "")
@@ -19,7 +19,7 @@ func sortString(word string) string {
 func buildAnagramMap() map[string][]string {
 	anagramMap := make(map[string][]string)
 
-	words, _ := os.Open(words_path)
+	words, _ := os.Open(wordsPath)
 	defer words.Close()
 
 	scanner := bufio.NewScanner(words)
@@ -27,12 +27,12 @@ func buildAnagramMap() map[string][]string {
 
 	for scanner.Scan() {
 		word := scanner.Text()
-		sorted_word := sortString(word)
+		sortedWord := sortString(word)
 
-		if _, ok := anagramMap[sorted_word]; ok == false {
-			anagramMap[sorted_word] = []string{}
+		if _, ok := anagramMap[sortedWord]; ok == false {
+			anagramMap[sortedWord] = []string{}
 		}
-		anagramMap[sorted_word] = append(anagramMap[sorted_word], word)
+		anagramMap[sortedWord] = append(anagramMap[sortedWord], word)
 	}
 
 	return anagramMap
