@@ -23,12 +23,12 @@ func deleteDuplicates(head *linkedlist.Node) *linkedlist.Node {
 }
 
 func main() {
-	myList := &linkedlist.Node{1, nil}
+	myList := &linkedlist.Node{Val: 1, Next: nil}
 	fmt.Println("Creating a 10-node sorted linked list...")
 	myList.Create(10)
 	myList.Print()
 	fmt.Println("Adding a duplicate node to above linked list...")
-	duplicateNode := &linkedlist.Node{2, nil}
+	duplicateNode := &linkedlist.Node{Val: 2, Next: nil}
 	duplicateNode.Next = myList.Next.Next
 	myList.Next.Next = duplicateNode
 	myList.Print()
