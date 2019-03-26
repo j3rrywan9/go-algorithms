@@ -9,11 +9,11 @@ Sequence: 23, 1213, 11121113, 31123113
 
 Write a function to take a seed, output the sequence after specified iterations:
 
-func look_and_say(seed, iterations int) string
+func lookAndSay(seed, iterations int) string
 
 For example:
 
-look_and_say(1, 4) = 111221
+lookAndSay(1, 4) = 111221
 */
 
 import (
@@ -21,7 +21,7 @@ import (
 	"strconv"
 )
 
-func look_and_say(seed, iterations int) string {
+func lookAndSay(seed, iterations int) string {
 	// Convert seed (integer) to string
 	input := strconv.Itoa(seed)
 	// Return the input directly if the iterations is less than 1
@@ -59,15 +59,14 @@ func main() {
 	var sequence string
 	fmt.Printf("Seed: %d\n", 2)
 	fmt.Printf("Iterations: %d\n", 1)
-	sequence = look_and_say(2, 1)
+	sequence = lookAndSay(2, 1)
 	fmt.Printf("Sequence: %s\n", sequence)
 	fmt.Printf("Seed: %d\n", 1)
 	fmt.Printf("Iterations: %d\n", 4)
-	sequence = look_and_say(1, 4)
+	sequence = lookAndSay(1, 4)
 	fmt.Printf("Sequence: %s\n", sequence)
 	fmt.Printf("Seed: %d\n", 33)
 	fmt.Printf("Iterations: %d\n", 4)
-	sequence = look_and_say(33, 4)
+	sequence = lookAndSay(33, 4)
 	fmt.Printf("Sequence: %s\n", sequence)
 }
-
