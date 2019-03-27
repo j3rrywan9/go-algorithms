@@ -6,14 +6,14 @@ import (
 
 // Doubly linked list
 type ListNode struct {
-	key, val int
+	key, val   int
 	prev, next *ListNode
 }
 
 // LCOJ No. 146
 type LRUCache struct {
-	capacity int
-	dict map[int]*ListNode
+	capacity   int
+	dict       map[int]*ListNode
 	head, tail *ListNode
 }
 
@@ -94,7 +94,7 @@ func (this *LRUCache) set(key, val int) {
 			var tail *ListNode = this.popTail()
 			delete(this.dict, tail.key)
 		}
-	} else { // Set the value if the key is already present 
+	} else { // Set the value if the key is already present
 		this.dict[key].val = val
 		// Mark the record as recently used
 		this.moveToHead(this.dict[key])
@@ -103,8 +103,8 @@ func (this *LRUCache) set(key, val int) {
 
 func main() {
 	cache := NewLRUCache(10)
-	for i := 0; i < 12; i ++ {
-		cache.set(i, i + 10)
+	for i := 0; i < 12; i++ {
+		cache.set(i, i+10)
 	}
 	cached_val := cache.get(1)
 	fmt.Printf("%d\n", cached_val)
@@ -113,4 +113,3 @@ func main() {
 	cached_val = cache.get(12)
 	fmt.Printf("%d\n", cached_val)
 }
-
