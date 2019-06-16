@@ -5,7 +5,7 @@ import (
 )
 
 func selectionSort(array []int) {
-	// We only need to run this loop len(array) - 2 times
+	// We only need to run this loop len(array) - 1 times
 	for i := 0; i < len(array)-1; i++ {
 		min := i
 		for j := i + 1; j < len(array); j++ {
