@@ -24,15 +24,15 @@ func mergeSort(array []int) []int {
 
 	left, right = mergeSort(left), mergeSort(right)
 
-	return merge(left, right)	
+	return merge(left, right)
 }
 
 // Merge two sorted arrays into one sorted array
 func merge(left, right []int) []int {
-	array := make([]int, len(left) + len(right))
+	array := make([]int, len(left)+len(right))
 
 	i, j, k := 0, 0, 0
-	
+
 	for i < len(left) && j < len(right) {
 		if left[i] <= right[j] {
 			array[k] = left[i]
@@ -65,4 +65,3 @@ func main() {
 	a = mergeSort(a)
 	fmt.Println("Sorted array: ", a)
 }
-
