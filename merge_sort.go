@@ -9,7 +9,7 @@ func mergeSort(array []int) []int {
 		return array
 	}
 
-	left, right := []int{}, []int{}
+	var left, right []int
 
 	mid := len(array) / 2
 
