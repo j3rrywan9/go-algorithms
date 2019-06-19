@@ -6,7 +6,7 @@ import (
 
 // Node of a linked list
 type Node struct {
-	Val int
+	Val  int
 	Next *Node
 }
 
@@ -15,9 +15,9 @@ func (this *Node) Create(length int) {
 	current := this
 	for i := 2; i <= length; i++ {
 		pNode := &Node{i, nil}
- 		current.Next = pNode
+		current.Next = pNode
 		current = pNode
-    }
+	}
 }
 
 // Print the value of each node of a linked list
@@ -35,4 +35,3 @@ func (this *Node) Print() {
 	}
 	fmt.Println()
 }
-
