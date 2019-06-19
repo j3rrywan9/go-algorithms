@@ -10,46 +10,46 @@ type Queue struct {
 	size   int
 }
 
-func (this *Queue) Push(x int) {
-	this.stack1 = append(this.stack1, x)
-	this.size += 1
+func (q *Queue) Push(x int) {
+	q.stack1 = append(q.stack1, x)
+	q.size += 1
 }
 
-func (this *Queue) Pop() {
-	if this.stack2 != nil {
-		this.stack2 = this.stack2[:len(this.stack2)-1]
+func (q *Queue) Pop() {
+	if q.stack2 != nil {
+		q.stack2 = q.stack2[:len(q.stack2)-1]
 	} else {
-		for i := 0; i < this.size-1; i++ {
-			x := this.stack1[len(this.stack1)-1]
-			this.stack1 = this.stack1[:len(this.stack1)-1]
-			this.stack2 = append(this.stack2, x)
+		for i := 0; i < q.size-1; i++ {
+			x := q.stack1[len(q.stack1)-1]
+			q.stack1 = q.stack1[:len(q.stack1)-1]
+			q.stack2 = append(q.stack2, x)
 		}
-		this.stack1 = this.stack1[:len(this.stack1)-1]
+		q.stack1 = q.stack1[:len(q.stack1)-1]
 	}
-	this.size -= 1
+	q.size -= 1
 }
 
-func (this *Queue) Peek() int {
-	if this.stack2 != nil {
-		return this.stack2[len(this.stack2)-1]
+func (q *Queue) Peek() int {
+	if q.stack2 != nil {
+		return q.stack2[len(q.stack2)-1]
 	} else {
-		for i := 0; i < this.size; i++ {
-			x := this.stack1[len(this.stack1)-1]
-			this.stack1 = this.stack1[:len(this.stack1)-1]
-			this.stack2 = append(this.stack2, x)
+		for i := 0; i < q.size; i++ {
+			x := q.stack1[len(q.stack1)-1]
+			q.stack1 = q.stack1[:len(q.stack1)-1]
+			q.stack2 = append(q.stack2, x)
 		}
-		return this.stack2[len(this.stack2)-1]
+		return q.stack2[len(q.stack2)-1]
 	}
 }
 
-func (this *Queue) Empty() bool {
-	return this.size == 0
+func (q *Queue) Empty() bool {
+	return q.size == 0
 }
 
-func (this *Queue) Print() {
-	fmt.Println("stack2:", this.stack2)
-	fmt.Println("stack1:", this.stack1)
-	fmt.Println("queue:", append(this.stack2, this.stack1...))
+func (q *Queue) Print() {
+	fmt.Println("stack2:", q.stack2)
+	fmt.Println("stack1:", q.stack1)
+	fmt.Println("queue:", append(q.stack2, q.stack1...))
 }
 
 func main() {
