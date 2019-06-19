@@ -5,7 +5,7 @@ import (
 )
 
 func binarySearch(array []int, x int) int {
-	low, high := 0, len(array) - 1
+	low, high := 0, len(array)-1
 
 	for low <= high {
 		mid := (low + high) / 2
@@ -33,4 +33,3 @@ func main() {
 		fmt.Printf("Number %d is at index %d.\n", x, index)
 	}
 }
-
