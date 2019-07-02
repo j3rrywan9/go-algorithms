@@ -24,7 +24,7 @@ func removeNthNodeFromEndOfList(head *linkedlist.Node, n int) *linkedlist.Node {
 }
 
 func main() {
-	myList := &linkedlist.Node{1, nil}
+	myList := &linkedlist.Node{Val: 1, Next: nil}
 	fmt.Println("Creating a 10-node linked list...")
 	myList.Create(10)
 	myList.Print()
