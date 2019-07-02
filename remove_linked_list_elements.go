@@ -8,7 +8,7 @@ import (
 // LeetCode OJ No. 203
 func removeElements(head *linkedlist.Node, val int) *linkedlist.Node {
 	// Create a dummy node and link it before head
-	dummyNode := &linkedlist.Node{-1, nil}
+	dummyNode := &linkedlist.Node{Val: -1, Next: nil}
 	dummyNode.Next = head
 	current := dummyNode
 
@@ -24,7 +24,7 @@ func removeElements(head *linkedlist.Node, val int) *linkedlist.Node {
 }
 
 func main() {
-	myList := &linkedlist.Node{1, nil}
+	myList := &linkedlist.Node{Val: 1, Next: nil}
 	fmt.Println("Creating a 10-node linked list...")
 	myList.Create(10)
 	myList.Print()
