@@ -29,7 +29,7 @@ func twoSum(nums []int, target int) (int, int) {
 	for i := 0; i < len(nums); i++ {
 		keys := sliceOfKeys(d)
 		if integerInSlice(nums[i], keys) == false {
-			d[target - nums[i]] = i
+			d[target-nums[i]] = i
 		} else {
 			return d[nums[i]], i
 		}
@@ -45,4 +45,3 @@ func main() {
 	index1, index2 := twoSum(nums, target)
 	fmt.Printf("Index1=%d, index2=%d\n", index1, index2)
 }
-
