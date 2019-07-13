@@ -14,14 +14,14 @@ func stringInSlice(s string, list []string) bool {
 }
 
 func pop(s *[]string) string {
-	r := (*s)[len(*s) - 1]
-	*s = (*s)[:len(*s) - 1]
+	r := (*s)[len(*s)-1]
+	*s = (*s)[:len(*s)-1]
 	return r
 }
 
 func isValid(s string) bool {
 	var stack []string
-	var dict = map[string]string{"]":"[", "}":"{", ")":"("}
+	var dict = map[string]string{"]": "[", "}": "{", ")": "("}
 	dict_keys := make([]string, len(dict))
 	dict_values := make([]string, len(dict))
 	i := 0
@@ -46,6 +46,5 @@ func isValid(s string) bool {
 
 func main() {
 	mystr := "(){}"
-	fmt.Printf("%t\n", isValid(mystr))	
+	fmt.Printf("%t\n", isValid(mystr))
 }
-
