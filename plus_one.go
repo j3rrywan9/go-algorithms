@@ -11,7 +11,7 @@ func plusOne(digits []int) []int {
 
 	// Get the number represented by the digits
 	for i := 0; i < len(digits); i++ {
-		num = num * 10 + digits[i]	
+		num = num*10 + digits[i]
 	}
 
 	// Convert (number + 1) to string
@@ -19,7 +19,7 @@ func plusOne(digits []int) []int {
 
 	var digits_plus_one []int
 
-	for _, char := range(num_str) {
+	for _, char := range num_str {
 		// Convert each character in the string to integer
 		i, err := strconv.Atoi(string(char))
 		if err != nil {
@@ -37,4 +37,3 @@ func main() {
 	digits_plus_one := plusOne(digits)
 	fmt.Printf("Output: %v\n", digits_plus_one)
 }
-
