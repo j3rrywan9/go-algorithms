@@ -29,35 +29,35 @@ func NewLRUCache(capacity int) *LRUCache {
 	return cache
 }
 
-func (this *LRUCache) addListNode(node *ListNode) {
-	node.prev = this.head
-	node.next = this.head.next
-	this.head.next.prev = node
-	this.head.next = node
+func (c *LRUCache) addListNode(node *ListNode) {
+	node.prev = c.head
+	node.next = c.head.next
+	c.head.next.prev = node
+	c.head.next = node
 }
 
-func (this *LRUCache) removeListNode(node *ListNode) {
+func (c *LRUCache) removeListNode(node *ListNode) {
 	var prevNode *ListNode = node.prev
 	var nextNode *ListNode = node.next
 	prevNode.next = nextNode
 	nextNode.prev = prevNode
 }
 
-func (this *LRUCache) moveToHead(node *ListNode) {
-	this.removeListNode(node)
-	this.addListNode(node)
+func (c *LRUCache) moveToHead(node *ListNode) {
+	c.removeListNode(node)
+	c.addListNode(node)
 }
 
-func (this *LRUCache) popTail() *ListNode {
-	var res *ListNode = this.tail.prev
-	this.removeListNode(res)
+func (c *LRUCache) popTail() *ListNode {
+	var res *ListNode = c.tail.prev
+	c.removeListNode(res)
 	return res
 }
 
-func (this *LRUCache) isKeyInCache(i int) bool {
+func (c *LRUCache) isKeyInCache(i int) bool {
 	// A slice of all keys in the cache
-	keys := make([]int, len(this.dict))
-	for k, _ := range this.dict {
+	keys := make([]int, len(c.dict))
+	for k, _ := range c.dict {
 		keys = append(keys, k)
 	}
 	for _, x := range keys {
@@ -68,36 +68,36 @@ func (this *LRUCache) isKeyInCache(i int) bool {
 	return false
 }
 
-func (this *LRUCache) get(key int) int {
+func (c *LRUCache) get(key int) int {
 	var node *ListNode
-	if this.isKeyInCache(key) {
-		node = this.dict[key]
+	if c.isKeyInCache(key) {
+		node = c.dict[key]
 		// Mark the record as recently used
-		this.moveToHead(node)
+		c.moveToHead(node)
 		return node.val
 	} else {
 		return -1
 	}
 }
 
-func (this *LRUCache) set(key, val int) {
+func (c *LRUCache) set(key, val int) {
 	// Insert the value if the key is not present
-	if this.isKeyInCache(key) == false {
+	if c.isKeyInCache(key) == false {
 		newNode := new(ListNode)
 		newNode.key = key
 		newNode.val = val
-		this.dict[key] = newNode
-		this.addListNode(newNode)
+		c.dict[key] = newNode
+		c.addListNode(newNode)
 
 		// Invalidate the LRU record when the cache reached its capacity
-		if len(this.dict) > this.capacity {
-			var tail *ListNode = this.popTail()
-			delete(this.dict, tail.key)
+		if len(c.dict) > c.capacity {
+			var tail *ListNode = c.popTail()
+			delete(c.dict, tail.key)
 		}
 	} else { // Set the value if the key is already present
-		this.dict[key].val = val
+		c.dict[key].val = val
 		// Mark the record as recently used
-		this.moveToHead(this.dict[key])
+		c.moveToHead(c.dict[key])
 	}
 }
 
