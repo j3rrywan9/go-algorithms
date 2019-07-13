@@ -106,10 +106,10 @@ func main() {
 	for i := 0; i < 12; i++ {
 		cache.set(i, i+10)
 	}
-	cached_val := cache.get(1)
-	fmt.Printf("%d\n", cached_val)
-	cached_val = cache.get(11)
-	fmt.Printf("%d\n", cached_val)
-	cached_val = cache.get(12)
-	fmt.Printf("%d\n", cached_val)
+	cachedValue := cache.get(1)
+	fmt.Printf("%d\n", cachedValue)
+	cachedValue = cache.get(11)
+	fmt.Printf("%d\n", cachedValue)
+	cachedValue = cache.get(12)
+	fmt.Printf("%d\n", cachedValue)
 }
