@@ -57,7 +57,7 @@ func (c *LRUCache) popTail() *ListNode {
 func (c *LRUCache) isKeyInCache(i int) bool {
 	// A slice of all keys in the cache
 	keys := make([]int, len(c.dict))
-	for k, _ := range c.dict {
+	for k := range c.dict {
 		keys = append(keys, k)
 	}
 	for _, x := range keys {
