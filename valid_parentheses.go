@@ -22,18 +22,18 @@ func pop(s *[]string) string {
 func isValid(s string) bool {
 	var stack []string
 	var dict = map[string]string{"]": "[", "}": "{", ")": "("}
-	dict_keys := make([]string, len(dict))
-	dict_values := make([]string, len(dict))
+	dictKeys := make([]string, len(dict))
+	dictValues := make([]string, len(dict))
 	i := 0
 	for k, v := range dict {
-		dict_keys[i] = k
-		dict_values[i] = v
+		dictKeys[i] = k
+		dictValues[i] = v
 		i++
 	}
 	for _, char := range s {
-		if stringInSlice(string(char), dict_values) {
+		if stringInSlice(string(char), dictValues) {
 			stack = append(stack, string(char))
-		} else if stringInSlice(string(char), dict_keys) {
+		} else if stringInSlice(string(char), dictKeys) {
 			if stack == nil || dict[string(char)] != pop(&stack) {
 				return false
 			}
@@ -45,6 +45,6 @@ func isValid(s string) bool {
 }
 
 func main() {
-	mystr := "(){}"
-	fmt.Printf("%t\n", isValid(mystr))
+	s := "(){}"
+	fmt.Printf("%t\n", isValid(s))
 }
