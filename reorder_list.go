@@ -74,4 +74,3 @@ func main() {
 	head := reorderList(myList)
 	head.Print()
 }
-
