@@ -37,8 +37,8 @@ func (c *LRUCache) addListNode(node *ListNode) {
 }
 
 func (c *LRUCache) removeListNode(node *ListNode) {
-	var prevNode *ListNode = node.prev
-	var nextNode *ListNode = node.next
+	prevNode := node.prev
+	nextNode := node.next
 	prevNode.next = nextNode
 	nextNode.prev = prevNode
 }
@@ -49,7 +49,7 @@ func (c *LRUCache) moveToHead(node *ListNode) {
 }
 
 func (c *LRUCache) popTail() *ListNode {
-	var res *ListNode = c.tail.prev
+	res := c.tail.prev
 	c.removeListNode(res)
 	return res
 }
@@ -91,7 +91,7 @@ func (c *LRUCache) set(key, val int) {
 
 		// Invalidate the LRU record when the cache reached its capacity
 		if len(c.dict) > c.capacity {
-			var tail *ListNode = c.popTail()
+			tail := c.popTail()
 			delete(c.dict, tail.key)
 		}
 	} else { // Set the value if the key is already present
