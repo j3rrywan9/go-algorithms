@@ -80,7 +80,7 @@ func (c *LRUCache) get(key int) int {
 	}
 }
 
-func (c *LRUCache) set(key, val int) {
+func (c *LRUCache) put(key, val int) {
 	// Insert the value if the key is not present
 	if c.isKeyInCache(key) == false {
 		newNode := new(ListNode)
@@ -104,7 +104,7 @@ func (c *LRUCache) set(key, val int) {
 func main() {
 	cache := NewLRUCache(10)
 	for i := 0; i < 12; i++ {
-		cache.set(i, i+10)
+		cache.put(i, i+10)
 	}
 	cachedValue := cache.get(1)
 	fmt.Printf("%d\n", cachedValue)
