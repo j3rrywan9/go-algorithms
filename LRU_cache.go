@@ -4,112 +4,105 @@ import (
 	"fmt"
 )
 
-// Doubly linked list
+// Doubly linked list node
 type ListNode struct {
 	key, val   int
 	prev, next *ListNode
 }
 
-// LCOJ No. 146
+// LC 146
 type LRUCache struct {
-	capacity   int
-	dict       map[int]*ListNode
+	cache      map[int]*ListNode
 	head, tail *ListNode
+	capacity   int
 }
 
 // Constructor
 func NewLRUCache(capacity int) *LRUCache {
-	cache := new(LRUCache)
-	cache.capacity = capacity
-	cache.dict = make(map[int]*ListNode, capacity)
-	cache.head = new(ListNode)
-	cache.tail = new(ListNode)
-	cache.head.next = cache.tail
-	cache.tail.prev = cache.head
-	return cache
+	lruCache := new(LRUCache)
+	lruCache.capacity = capacity
+	lruCache.cache = make(map[int]*ListNode, capacity)
+	lruCache.head = new(ListNode)
+	lruCache.tail = new(ListNode)
+	lruCache.head.next = lruCache.tail
+	lruCache.tail.prev = lruCache.head
+	return lruCache
 }
 
-func (c *LRUCache) addListNode(node *ListNode) {
-	node.prev = c.head
-	node.next = c.head.next
-	c.head.next.prev = node
-	c.head.next = node
+func (l *LRUCache) addNode(node *ListNode) {
+	node.prev = l.head
+	node.next = l.head.next
+	l.head.next.prev = node
+	l.head.next = node
 }
 
-func (c *LRUCache) removeListNode(node *ListNode) {
+func (l *LRUCache) removeNode(node *ListNode) {
 	prevNode := node.prev
 	nextNode := node.next
 	prevNode.next = nextNode
 	nextNode.prev = prevNode
 }
 
-func (c *LRUCache) moveToHead(node *ListNode) {
-	c.removeListNode(node)
-	c.addListNode(node)
+func (l *LRUCache) moveToHead(node *ListNode) {
+	l.removeNode(node)
+	l.addNode(node)
 }
 
-func (c *LRUCache) popTail() *ListNode {
-	res := c.tail.prev
-	c.removeListNode(res)
+func (l *LRUCache) popTail() *ListNode {
+	res := l.tail.prev
+	l.removeNode(res)
 	return res
 }
 
-func (c *LRUCache) isKeyInCache(i int) bool {
-	// A slice of all keys in the cache
-	keys := make([]int, len(c.dict))
-	for k := range c.dict {
-		keys = append(keys, k)
-	}
-	for _, x := range keys {
-		if x == i {
-			return true
-		}
+func (l *LRUCache) containsKey(key int) bool {
+	if _, found := l.cache[key]; found {
+		return true
 	}
 	return false
 }
 
-func (c *LRUCache) get(key int) int {
+func (l *LRUCache) get(key int) int {
 	var node *ListNode
-	if c.isKeyInCache(key) {
-		node = c.dict[key]
+	if l.containsKey(key) {
+		node = l.cache[key]
 		// Mark the record as recently used
-		c.moveToHead(node)
+		l.moveToHead(node)
 		return node.val
 	} else {
 		return -1
 	}
 }
 
-func (c *LRUCache) put(key, val int) {
+func (l *LRUCache) put(key, val int) {
 	// Insert the value if the key is not present
-	if c.isKeyInCache(key) == false {
+	if l.containsKey(key) == false {
 		newNode := new(ListNode)
 		newNode.key = key
 		newNode.val = val
-		c.dict[key] = newNode
-		c.addListNode(newNode)
+		l.cache[key] = newNode
+		l.addNode(newNode)
 
 		// Invalidate the LRU record when the cache reached its capacity
-		if len(c.dict) > c.capacity {
-			tail := c.popTail()
-			delete(c.dict, tail.key)
+		if len(l.cache) > l.capacity {
+			tail := l.popTail()
+			delete(l.cache, tail.key)
 		}
 	} else { // Set the value if the key is already present
-		c.dict[key].val = val
+		l.cache[key].val = val
 		// Mark the record as recently used
-		c.moveToHead(c.dict[key])
+		l.moveToHead(l.cache[key])
 	}
 }
 
 func main() {
-	cache := NewLRUCache(10)
+	lruCache := NewLRUCache(10)
 	for i := 0; i < 12; i++ {
-		cache.put(i, i+10)
+		lruCache.put(i, i+10)
 	}
-	cachedValue := cache.get(1)
+	cachedValue := lruCache.get(1)
 	fmt.Printf("%d\n", cachedValue)
-	cachedValue = cache.get(11)
+	cachedValue = lruCache.get(11)
 	fmt.Printf("%d\n", cachedValue)
-	cachedValue = cache.get(12)
+	cachedValue = lruCache.get(12)
 	fmt.Printf("%d\n", cachedValue)
 }
