@@ -16,7 +16,7 @@ func integerInSlice(i int, s []int) bool {
 
 // Construct a slice of integers that come from keys of a map[int]int
 func sliceOfKeys(m map[int]int) []int {
-	keys := make([]int, len(m))
+	var keys []int
 	for k := range m {
 		keys = append(keys, k)
 	}
