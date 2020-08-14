@@ -2,38 +2,35 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
-// LeetCode OJ No. 66
+// LC 66
 func plusOne(digits []int) []int {
-	var num int
+	n := len(digits)
 
-	// Get the number represented by the digits
-	for i := 0; i < len(digits); i++ {
-		num = num*10 + digits[i]
-	}
-
-	// Convert (number + 1) to string
-	num_str := strconv.Itoa(num + 1)
-
-	var digits_plus_one []int
-
-	for _, char := range num_str {
-		// Convert each character in the string to integer
-		i, err := strconv.Atoi(string(char))
-		if err != nil {
-			panic(err)
+	for index := n - 1; index >= 0; index-- {
+		if digits[index] == 9 {
+			digits[index] = 0
+		} else {
+			digits[index]++
+			return digits
 		}
-		digits_plus_one = append(digits_plus_one, i)
 	}
 
-	return digits_plus_one
+	digitsPlusOne := make([]int, n+1)
+	digitsPlusOne[0] = 1
+
+	return digitsPlusOne
 }
 
 func main() {
-	digits := []int{3, 8, 2, 5}
+	digits := []int{1, 2, 3}
 	fmt.Printf("Input: %v\n", digits)
-	digits_plus_one := plusOne(digits)
-	fmt.Printf("Output: %v\n", digits_plus_one)
+	digitsPlusOne := plusOne(digits)
+	fmt.Printf("Output: %v\n", digitsPlusOne)
+
+	digits = []int{4, 3, 2, 1}
+	fmt.Printf("Input: %v\n", digits)
+	digitsPlusOne = plusOne(digits)
+	fmt.Printf("Output: %v\n", digitsPlusOne)
 }
