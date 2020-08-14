@@ -53,16 +53,16 @@ func (q *Queue) Print() {
 }
 
 func main() {
-	myqueue := new(Queue)
-	myqueue.Push(1)
-	myqueue.Push(2)
-	myqueue.Push(3)
-	myqueue.Push(4)
-	myqueue.Push(5)
-	myqueue.Pop()
-	test := myqueue.Peek()
+	myQueue := new(Queue)
+	myQueue.Push(1)
+	myQueue.Push(2)
+	myQueue.Push(3)
+	myQueue.Push(4)
+	myQueue.Push(5)
+	myQueue.Pop()
+	test := myQueue.Peek()
 	fmt.Printf("%d\n", test)
-	myqueue.Pop()
-	myqueue.Print()
-	fmt.Printf("Is queue empty? %t\n", myqueue.Empty())
+	myQueue.Pop()
+	myQueue.Print()
+	fmt.Printf("Is queue empty? %t\n", myQueue.Empty())
 }
