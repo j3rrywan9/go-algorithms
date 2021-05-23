@@ -1,8 +1,7 @@
-package main
+package interview
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"sort"
 	"strings"
@@ -36,22 +35,4 @@ func buildAnagramMap() map[string][]string {
 	}
 
 	return anagramMap
-}
-
-func main() {
-	var word string
-
-	anagramMap := buildAnagramMap()
-
-	scanner := bufio.NewScanner(os.Stdin)
-
-	for scanner.Scan() {
-		word = strings.TrimSpace(scanner.Text())
-
-		if anagramList, ok := anagramMap[sortString(word)]; ok {
-			fmt.Printf("%v\n", anagramList)
-		} else {
-			fmt.Println("No matches")
-		}
-	}
 }
