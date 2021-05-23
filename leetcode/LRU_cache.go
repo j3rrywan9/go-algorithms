@@ -1,8 +1,4 @@
-package main
-
-import (
-	"fmt"
-)
+package leetcode
 
 // Doubly linked list node
 type ListNode struct {
@@ -92,17 +88,4 @@ func (l *LRUCache) put(key, val int) {
 		// Mark the record as recently used
 		l.moveToHead(l.cache[key])
 	}
-}
-
-func main() {
-	lruCache := NewLRUCache(10)
-	for i := 0; i < 12; i++ {
-		lruCache.put(i, i+10)
-	}
-	cachedValue := lruCache.get(1)
-	fmt.Printf("%d\n", cachedValue)
-	cachedValue = lruCache.get(11)
-	fmt.Printf("%d\n", cachedValue)
-	cachedValue = lruCache.get(12)
-	fmt.Printf("%d\n", cachedValue)
 }
