@@ -1,4 +1,4 @@
-package main
+package interview
 
 import (
 	"fmt"
@@ -50,19 +50,4 @@ func (q *Queue) Print() {
 	fmt.Println("stack2:", q.stack2)
 	fmt.Println("stack1:", q.stack1)
 	fmt.Println("queue:", append(q.stack2, q.stack1...))
-}
-
-func main() {
-	myQueue := new(Queue)
-	myQueue.Push(1)
-	myQueue.Push(2)
-	myQueue.Push(3)
-	myQueue.Push(4)
-	myQueue.Push(5)
-	myQueue.Pop()
-	test := myQueue.Peek()
-	fmt.Printf("%d\n", test)
-	myQueue.Pop()
-	myQueue.Print()
-	fmt.Printf("Is queue empty? %t\n", myQueue.Empty())
 }
