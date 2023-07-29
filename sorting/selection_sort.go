@@ -1,8 +1,4 @@
-package main
-
-import (
-	"fmt"
-)
+package sorting
 
 func selectionSort(array []int) {
 	// We only need to run this loop len(array) - 1 times
@@ -18,11 +14,4 @@ func selectionSort(array []int) {
 		array[i] = array[min]
 		array[min] = temp
 	}
-}
-
-func main() {
-	a := []int{1, 6, 2, 4, 9, 0, 5, 3, 7, 8}
-	fmt.Println("Unsorted array: ", a)
-	selectionSort(a)
-	fmt.Println("Sorted array: ", a)
 }
