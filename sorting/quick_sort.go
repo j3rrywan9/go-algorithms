@@ -1,8 +1,4 @@
-package main
-
-import (
-	"fmt"
-)
+package sorting
 
 // Partition selects a pivot, rearranges the array such that all the elements
 // less than the pivot are towards the left of it and all the elements greater
@@ -39,11 +35,4 @@ func quickSort(array []int, start, end int) {
 		// Quick sort the segment right to the partition index
 		quickSort(array, partitionIndex+1, end)
 	}
-}
-
-func main() {
-	a := []int{1, 6, 2, 4, 9, 0, 5, 3, 7, 8}
-	fmt.Println("Unsorted array: ", a)
-	quickSort(a, 0, len(a)-1)
-	fmt.Println("Sorted array: ", a)
 }
