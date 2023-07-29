@@ -1,8 +1,4 @@
-package main
-
-import (
-	"fmt"
-)
+package sorting
 
 func mergeSort(array []int) []int {
 	if len(array) <= 1 {
@@ -57,11 +53,4 @@ func merge(left, right []int) []int {
 	}
 
 	return array
-}
-
-func main() {
-	a := []int{1, 6, 2, 4, 9, 0, 5, 3, 7, 8}
-	fmt.Println("Unsorted array: ", a)
-	a = mergeSort(a)
-	fmt.Println("Sorted array: ", a)
 }
